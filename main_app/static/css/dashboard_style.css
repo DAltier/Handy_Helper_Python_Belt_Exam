@@ -1,0 +1,36 @@
+*{
+  margin: 0 auto;
+  padding: 0 auto;
+}
+
+
+#container {
+  width: 970px;
+  padding: 20px;
+  border: 1px solid black;
+}
+
+
+table {
+  width: 900px;
+  border: 1px solid black;
+  padding: 5px;
+}
+
+th, td {
+  border: 1px solid black;
+  padding: 5px;
+}
+
+button {
+  background-color: white;
+  border: 1px solid black;
+  color: black;
+  padding: 12px 25px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  box-shadow: 5px 10px;
+  margin: 20px;
+  display: block;
+}

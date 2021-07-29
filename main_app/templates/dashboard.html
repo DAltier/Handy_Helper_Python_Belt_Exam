@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/dashboard_style.css' %}">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>Handy Helper Dashboard</title>
+</head>
+
+
+<body>
+  <div id="container">
+    <nav class="navbar navbar-light bg-light justify-content-apart navbar-dark bg-dark" style="height: 150px">
+      <h2 style="color:white;">Hello {{user.first_name}}!</h2>
+      <a href="/logout">Log Out</a>
+      <a href="/jobs/new"><button>Create a new job!</button></a>
+    </nav>
+
+
+    {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+        <li style="color: red;">{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    
+    <div class="other_jobs" style="margin-top: 30px;">
+      <h3>Everyone's Jobs</h3>
+      {% if all_jobs %}
+        <table>
+          <tr>
+            <th>Job</th>
+            <th>Location</th>
+            <th>Actions</th>
+          </tr>
+          {% for job in all_jobs %}
+            <tr>
+              <td>{{ job.title }}</td>
+              <td>{{ job.location }}</td>
+              <td>
+                <a href="/jobs/{{ job.id }}">View</a>
+                {% if job.user == user %}
+                  | <a href="/jobs/delete_job/{{ job.id }}">Remove</a>
+                  | <a href="/jobs/edit_job/{{ job.id }}">Edit</a>
+                {% endif %}
+                | <a href="/jobs/add_to_user/{{ job.id }}">Add</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </table>
+      {% else %}
+        <h4>No jobs created.</h4>
+      {% endif %}
+    </div>
+
+
+    <div class="your_jobs" style="margin-top: 30px;">
+      <h3>{{ user.first_name }}'s Jobs:</h3>
+      {% if jobs_added %}
+        <table>
+            <tr>
+              <th>Job</th>
+              <th>Actions</th>
+            </tr>
+            {% for job in jobs_added %}
+            <tr>
+                <td>{{ job.title }}</td>
+                <td>
+                  <a href="/jobs/{{job.id}}">View</a>
+                  | <a href="jobs/done_job/{{ job.id }}">Done</a>
+                  | <a href="jobs/cancel_job/{{ job.id }}">Give Up</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+      {% else %}
+        <h4>No scheduled jobs.</h4>
+      {% endif %}
+  </div>
+
+
+  </div>
+
+
+</body>
+</html>

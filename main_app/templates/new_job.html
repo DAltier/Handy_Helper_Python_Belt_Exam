@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>New Trip</title>
+
+
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/new_job_style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+
+<body>
+
+
+  <div id="container">
+    <nav class="navbar navbar-light bg-light justify-content-apart navbar-dark bg-dark" style="height: 100px">
+      <h2 style="color:white;">Hello {{ user.first_name }}! Create a job!</h2>
+      <a href="/logout">Log Out</a>
+    </nav>
+
+
+    {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+        <li style="color: red;">{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+
+    <div id="box">
+      <form action='/jobs/create' method='post'>
+        {% csrf_token %}
+        <label for="title" style="padding-right: 20px; width: 100px;">Title</label> 
+        <input type="text" name="title" style="width: 300px; margin: 10px 0px;">
+        <label for="description" style="padding-right: 20px; width: 100px;">Description</label> 
+        <input type="text" name="description" style="width: 300px; margin: 10px 0px;">
+        <label for="location" style="padding-right: 20px; width: 100px;">Location</label> 
+        <input type="text" name="location" style="width: 300px; margin: 10px 0px;">
+        <label for="category" style="padding-right: 20px; width: 100px;">Category</label> 
+        <ul style="margin-left: 150px;">
+          {% for category in categories %}
+            <li style="padding: 5px;"><input type="checkbox" name="category" value="{{category.id}}" style="margin-right: 10px;">{{category.category}}</li>
+          {% endfor %}
+          <li>Other: <input type="text" name="category_input"></li>
+        </ul>
+        <div>
+          <a href="/dashboard" class="button" style="margin-left: 200px;">Cancel</a> 
+          <button>Submit</button>
+        </div>
+      </form>
+    </div>
+    
+      
+  </div>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>Trip Buddy</title>
+</head>
+
+
+<body>
+  <h1>Welcome! Sign in to manage your jobs!</h1>
+  <div>
+    {% if messages %}
+      <ul class="messages" style="list-style-type: none; text-align: center;">
+        {% for message in messages %}
+        <li style="color: red;">{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+  <div id="container">
+    <div class="box">
+      
+
+      <h3>Registration</h3>
+      <form action="/register" method="POST">
+        {%csrf_token%}
+        <p>
+          First Name
+          <input type="text" name="first_name" id="">
+        </p>
+
+
+        <p>
+          Last Name
+          <input type="text" name="last_name" id="">
+        </p>
+
+
+        <p>
+          Email
+          <input type="email" name="email" id="">
+        </p>
+
+
+        <p>
+          Password
+          <input type="password" name="password" id="">
+        </p>
+
+
+        <p>
+          Confirm PW
+          <input type="password" name="confirm_password" id="">
+        </p>
+        
+
+        <button style="margin: auto;">Register</button>
+
+
+      </form>
+    </div>
+
+  
+    <div class="box">
+      <h3 class="h3 text-center">Login</h3>
+      <form action="/login" method="POST">
+        {%csrf_token%}
+        <p>
+          Email
+          <input type="email" name="email" id="">
+        </p>
+
+
+        <p>
+          Password
+          <input type="password" name="password" id="">
+        </p>
+
+
+        <button style="margin: auto;">Login</button>
+      </form>
+    </div>
+
+
+  </div>
+</body>
+</html>
