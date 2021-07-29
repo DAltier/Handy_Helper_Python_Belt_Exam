@@ -17,7 +17,7 @@ Giving up on a job will return it to the main table, while marking it as done wi
 
 The logged-in user can create new job and assign them to one or more categories.
 
-<img src="https://github.com/DAltier/Handy_Helper_Python_Belt_Exam/blob/main/images/new_job.png width="800">
+<img src="https://github.com/DAltier/Handy_Helper_Python_Belt_Exam/blob/main/images/new_job.png" width="800">
 
 Clicking on one of the jobs on the dashboard will redirect the user to a page displaying the details about that particular job.
 If the job is not on their list, they can add it from this page.
